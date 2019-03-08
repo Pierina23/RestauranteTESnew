@@ -2,6 +2,7 @@
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Globalization
+Imports AjaxControlToolkit
 
 Partial Class _Default
     Inherits System.Web.UI.Page
@@ -16,6 +17,7 @@ Partial Class _Default
     Public column As DataColumn
     Public fil As DataRow
     Public tot As Double
+    Public Usuario As String
 
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -25,6 +27,7 @@ Partial Class _Default
                 Response.Redirect("InicioSesion.aspx")
             End If
             'codigo = CInt(Session("IDEMP"))
+            Usuario = Session("CodigoMesero")
             tx_CodighoMesero.Text = Session("CodigoMesero") 'Cambié aquí KP
             tx_NombreMesero.Text = Session("NombreMesero") 'Cambié aquí KP
             tx_calen.Text = Today.ToString("dd/MM/yyyy")
@@ -136,8 +139,27 @@ Partial Class _Default
 
                 dtbp.Clear()
                 con.Close()
-            Catch ex As Exception
 
+
+                Dim intNumFilIns As Integer = 0
+                Dim sdab As SqlDataAdapter
+                Dim dtbinsb As DataTable
+                con = New SqlConnection(CStr(Session("sessStrCon")))
+                Usuario = Session("CodigoMesero")
+                con.Open()
+                Dim consulta As String = "select * from tbm_rating where Id_Plato = " & cbo_PlaBeb.SelectedValue & " and Id_Usuario = " & Usuario
+                sdab = New SqlDataAdapter(consulta, con)
+                dtbinsb = New DataTable
+                sdab.Fill(dtbinsb)
+                If dtbinsb.Rows.Count > 0 Then
+                    Dim valor As Integer = Convert.ToInt32(dtbinsb.Rows(0)(3).ToString())
+                    Rating1.CurrentRating = valor
+                Else
+                    Rating1.CurrentRating = 0
+                End If
+
+            Catch ex As Exception
+                con.Close()
             End Try
         End If
 
@@ -218,7 +240,7 @@ Partial Class _Default
             Dim dtbinsb As DataTable
             dtbinsb = New DataTable
             For i = 0 To dtborden.Rows.Count - 1
-                
+
                 Dim n As DateTime = Now
                 Dim strsqlb As String
                 strsqlb = "SELECT Tiempo FROM tbm_Platos where idplato= " & dtborden.Rows(i).Item(0)
@@ -251,6 +273,52 @@ Partial Class _Default
 
         Response.Redirect("Reservaciones.aspx?v1=" & tx_CodighoMesero.Text)
 
+
+    End Sub
+    Protected Sub Rating1_Changed(ByVal sender As Object, ByVal e As RatingEventArgs)
+        Try
+            If cbo_PlaBeb.SelectedValue <> "---" Then
+                Dim intNumFilIns As Integer = 0
+                Dim sdab As SqlDataAdapter
+                Dim dtbinsb As DataTable
+                con = New SqlConnection(CStr(Session("sessStrCon")))
+                Usuario = Session("CodigoMesero")
+                con.Open()
+                Dim consulta As String = "select * from tbm_rating where Id_Plato = " & cbo_PlaBeb.SelectedValue & " and Id_Usuario = " & Usuario
+                sdab = New SqlDataAdapter(consulta, con)
+                dtbinsb = New DataTable
+                sdab.Fill(dtbinsb)
+                If dtbinsb.Rows.Count > 0 Then
+                    intNumFilIns = 0
+                    strSQL = "UPDATE tbm_rating set Rating = " & Rating1.CurrentRating & " where Id_Plato = " & cbo_PlaBeb.SelectedValue & " and Id_Usuario = " & Usuario
+                    'sda.UpdateCommand = New SqlCommand(strSQL, con)
+                    Dim actualizar As New SqlCommand(strSQL, con)
+                    ' intNumFilIns = sda.UpdateCommand.ExecuteNonQuery()
+                    intNumFilIns = actualizar.ExecuteNonQuery()
+                    If intNumFilIns > 0 Then
+                        MsgBox("Voto actualizado exitosamente.")
+                    Else
+                        MsgBox("Voto no se actualizo.")
+                    End If
+                Else
+                    intNumFilIns = 0
+                    strSQL = "INSERT INTO tbm_rating (Id_Plato, Id_Usuario, Rating) VALUES (" & cbo_PlaBeb.SelectedValue & "," & Usuario & "," & Rating1.CurrentRating & ")"
+                    'sda.InsertCommand = New SqlCommand(strSQL, con)
+                    Dim actualizar1 As New SqlCommand(strSQL, con)
+                    'count = actualizar.ExecuteNonQuery()
+                    intNumFilIns = actualizar1.ExecuteNonQuery()
+                    If intNumFilIns > 0 Then
+                        MsgBox("Voto registrado exitosamente.")
+                    Else
+                        MsgBox("Voto no se registro.")
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+
+        Finally
+            con.Close()
+        End Try
 
     End Sub
 End Class

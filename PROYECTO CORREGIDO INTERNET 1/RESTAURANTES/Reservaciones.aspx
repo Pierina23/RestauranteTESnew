@@ -1,6 +1,5 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="MasterPage.master" AutoEventWireup="false" CodeFile="Reservaciones.aspx.vb" Inherits="_Default"  %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="Reservaciones.aspx.vb" Inherits="_Default"  %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <title>RestauranTES.com</title>
@@ -127,6 +126,24 @@
             color: #C56617;
             border-width: 1px;
         }
+        .blankstar
+{
+background-image: url(images/blank_star.png);
+width: 16px;
+height: 16px;
+}
+.waitingstar
+{
+background-image: url(images/half_star.png);
+width: 16px;
+height: 16px;
+}
+.shiningstar
+{
+background-image: url(images/shining_star.png);
+width: 16px;
+height: 16px;
+}
      </style>
 
 </asp:Content>
@@ -198,6 +215,14 @@
                             <asp:DropDownList ID="cbo_PlaBeb" runat="server" Width="214px" Height="21px" style="font-weight: 700; " AppendDataBoundItems="True" AutoPostBack="True" CssClass="auto-style38">
                                 <asp:ListItem>---</asp:ListItem>
                             </asp:DropDownList>
+                            <div>
+                                <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
+                                </asp:ScriptManager>
+                                <asp:Rating ID="Rating1" runat="server" AutoPostBack="true" StarCssClass="blankstar" 
+                                WaitingStarCssClass="waitingstar" FilledStarCssClass="shiningstar" 
+                                EmptyStarCssClass="blankstar" OnChanged="Rating1_Changed" OnClick="Rating1_Changed">
+                                </asp:Rating>
+                            </div>
                         &nbsp;<span class="auto-style24"><br />
                             <strong>Precio:&nbsp; $</strong></span>
                             <asp:TextBox ID="tx_Precio" runat="server" BorderColor="Black" style="font-weight: 700; " Height="16px" Width="141px" Enabled="False" BorderStyle="Solid" CssClass="auto-style38" ></asp:TextBox>
@@ -208,8 +233,8 @@
                             <ajaxToolkit:SliderExtender ID="tx_can_SliderExtender" runat="server" BehaviorID="tx_can_SliderExtender" Maximum="50" Minimum="1" BoundControlID="TextBox1" TargetControlID="tx_can" />
                             <asp:TextBox ID="TextBox1" runat="server" Height="16px" Width="35px"></asp:TextBox>
                             <br />
-                            <asp:ScriptManager ID="ScriptManager1" runat="server">
-                            </asp:ScriptManager>
+                            <%--<asp:ScriptManager ID="ScriptManager1" runat="server">
+                            </asp:ScriptManager>--%>
                             <br class="auto-style24" />
                             <asp:Button ID="bot_Agre" runat="server" Text="AGREGAR" />
                             <ajaxToolkit:ConfirmButtonExtender ID="bot_Agre_ConfirmButtonExtender" runat="server" ConfirmText="¿Esta seguro de querer agregar la información registrada?" OnClientCancel="Operación cancelada" TargetControlID="bot_Agre" />
@@ -221,7 +246,8 @@
                         <td class="auto-style37">
                             &nbsp;</td>
                         <td class="auto-style34">
-                            &nbsp;</td>
+                            &nbsp;                           
+                        </td>
                         <td class="auto-style15">
                             &nbsp;</td>
                         <td class="auto-style18">
