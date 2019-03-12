@@ -124,29 +124,32 @@
                 <div style="display:inline-block;width:30%;text-align:left">
                     
                       <%Dim Usuario = CStr(Session("USER"))
-                          If Not String.IsNullOrEmpty(Usuario) Then
+                If Not String.IsNullOrEmpty(Usuario) Then
                             %>  
                     <ul>                      
                         <li><a href="InicioSesion.aspx"><img style="width:140px;height:35px;padding-top:50px;margin-left:375px;border:none;" src="images/Transicion/cerrar_sesion.png" /></a></>  </li>    
                        <%
-                           If Session("tipoEmpleado").Equals("Administrador") Then
+                If Session("tipoEmpleado").Equals("Administrador") Then
                             %>  
                          <li><a href="MenuAdministrador.aspx"><img style="width:90px;float:right;margin-top:-120px;height:90px;padding-top:50px;margin-right:-15px;border:none;" src="images/Administrador.png" /></a></li>
                           <%End If%>
                          <%
-                             If Session("tipoEmpleado").Equals("Mesero") Then
+                If Session("tipoEmpleado").Equals("Mesero") Then
                             %>  
                          <li><a href="MenuMesero.aspx"><img style="width:90px;float:right;margin-top:-120px;height:90px;padding-top:50px;margin-right:-15px;border:none;" src="images/Mesero.png" /></a></li>
                           <%End If%>
                          <%
-                             If Session("tipoEmpleado").Equals("Chef") Then
+                If Session("tipoEmpleado").Equals("Chef") Then
                             %>  
                          <li><a href="MenuCocina.aspx"><img style="width:90px;float:right;margin-top:-120px;height:90px;padding-top:50px;margin-right:-15px;border:none;" src="images/chef.png" /></a></li>
                           <%End If%>
                     </ul>
                          <%Else%>
                     
-                         '<a href="InicioSesion.aspx"><img style="width:150px;height:70px;padding-top:-150px;margin-left:350px" src="images/Transicion/inicio_sesion.png" /></a></> 
+                         '<a href="InicioSesion.aspx">
+                             <div>
+                                 <img style="width:150px;height:70px;padding-top:-150px;margin-left:350px" src="images/Transicion/inicio_sesion.png" /> 
+                             </div>
                        
                    
                      <%End If%>  
@@ -167,7 +170,12 @@
                         <li><a href="Contactenos.aspx">Contáctenos</a></li>   
                         <li><a href="RegistroClientes.aspx">Registro Clientes</a></li>                             
                     </ul>
-                    </nav>       
+                        <div>
+                    <a  href="InicioSesion.aspx" class="btn btn-info" role="button">Cerrar sesión</a>
+                            <%--<asp:LinkButton ID="btnCerrarSesion" class="btn btn-info" runat="server" ><span class="glyphicon glyphicon-cog"></span> Cerrar sesión</asp:LinkButton>--%>
+                </div>     
+                    </nav>  
+        
     </header>    
      <%--     /INICIO CAMBIOS REALIZADOS EN EL MENU DE NAVGACION*/--%>
     <div>

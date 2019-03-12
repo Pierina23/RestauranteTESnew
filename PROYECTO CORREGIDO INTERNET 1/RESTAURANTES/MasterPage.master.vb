@@ -19,8 +19,6 @@ Partial Class MasterPage
         con = New SqlConnection(CStr(Session("sessStrCon")))
         Usuario = Session("USER").ToString()
 
-
-
     End Sub
 
     Private Function GetMenuData() As DataTable

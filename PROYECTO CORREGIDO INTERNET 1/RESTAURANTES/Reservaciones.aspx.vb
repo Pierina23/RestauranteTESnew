@@ -124,7 +124,7 @@ Partial Class _Default
 
     End Sub
 
-    Protected Sub cbo_PlaBeb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbo_PlaBeb.SelectedIndexChanged
+    Public Sub cbo_PlaBeb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbo_PlaBeb.SelectedIndexChanged
         If cbo_PlaBeb.SelectedIndex > 0 Then
             con = New SqlConnection(CStr(Session("sessStrCon")))
             Try
@@ -153,9 +153,9 @@ Partial Class _Default
                 sdab.Fill(dtbinsb)
                 If dtbinsb.Rows.Count > 0 Then
                     Dim valor As Integer = Convert.ToInt32(dtbinsb.Rows(0)(3).ToString())
-                    Rating1.CurrentRating = valor
+                    Me.Rating1.CurrentRating = valor
                 Else
-                    Rating1.CurrentRating = 0
+                    Me.Rating1.CurrentRating = 0
                 End If
 
             Catch ex As Exception
@@ -275,7 +275,7 @@ Partial Class _Default
 
 
     End Sub
-    Protected Sub Rating1_Changed(ByVal sender As Object, ByVal e As RatingEventArgs)
+    Public Sub Rating1_Changed(ByVal sender As Object, ByVal e As RatingEventArgs)
         Try
             If cbo_PlaBeb.SelectedValue <> "---" Then
                 Dim intNumFilIns As Integer = 0
@@ -290,7 +290,7 @@ Partial Class _Default
                 sdab.Fill(dtbinsb)
                 If dtbinsb.Rows.Count > 0 Then
                     intNumFilIns = 0
-                    strSQL = "UPDATE tbm_rating set Rating = " & Rating1.CurrentRating & " where Id_Plato = " & cbo_PlaBeb.SelectedValue & " and Id_Usuario = " & Usuario
+                    strSQL = "UPDATE tbm_rating set Rating = " & Me.Rating1.CurrentRating & " where Id_Plato = " & cbo_PlaBeb.SelectedValue & " and Id_Usuario = " & Usuario
                     'sda.UpdateCommand = New SqlCommand(strSQL, con)
                     Dim actualizar As New SqlCommand(strSQL, con)
                     ' intNumFilIns = sda.UpdateCommand.ExecuteNonQuery()
@@ -302,7 +302,7 @@ Partial Class _Default
                     End If
                 Else
                     intNumFilIns = 0
-                    strSQL = "INSERT INTO tbm_rating (Id_Plato, Id_Usuario, Rating) VALUES (" & cbo_PlaBeb.SelectedValue & "," & Usuario & "," & Rating1.CurrentRating & ")"
+                    strSQL = "INSERT INTO tbm_rating (Id_Plato, Id_Usuario, Rating) VALUES (" & cbo_PlaBeb.SelectedValue & "," & Usuario & "," & Me.Rating1.CurrentRating & ")"
                     'sda.InsertCommand = New SqlCommand(strSQL, con)
                     Dim actualizar1 As New SqlCommand(strSQL, con)
                     'count = actualizar.ExecuteNonQuery()
