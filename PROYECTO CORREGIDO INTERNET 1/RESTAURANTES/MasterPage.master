@@ -161,11 +161,7 @@
                     <ul>
                         <li><a title="Inicio" href="Default.aspx">Inicio</a></li>
                         <li><a title="Menú" href="MenuAdministrador.aspx">Menú</a></li>
-                    <%--    <li><a title="ActulizarPlatos" href="ActulizarPlatos.aspx">Actualizar Platos</a></li>--%>
                         <li><a href="Reservaciones.aspx">Reservas</a></li>
-                        <%--<li><a href="Pedidos.aspx">Pedidos domicilio</a></li>--%>
-                  <%--      <li><a href="PagEstadoPed.aspx">Estado pedido</a></li>
-                        <li><a href="ConsulClientes.aspx">Consultar</a></li>--%>
                         <li><a href="QuienesSomos.aspx">Quiénes somos</a></li>
                         <li><a href="Contactenos.aspx">Contáctenos</a></li>   
                         <li><a href="RegistroClientes.aspx">Registro Clientes</a></li>                             
@@ -180,7 +176,7 @@
      <%--     /INICIO CAMBIOS REALIZADOS EN EL MENU DE NAVGACION*/--%>
     <div>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-            <div class="row-bot">
+           <%-- <div class="row-bot">
                 <div class="row-bot-bg">
                     <div class="main">
                         <h2></h2> 
@@ -188,7 +184,7 @@
                 </div>
             </div>
             <section id="content">              
-            </section>
+            </section>--%>
         </asp:ContentPlaceHolder>
     </div>
 

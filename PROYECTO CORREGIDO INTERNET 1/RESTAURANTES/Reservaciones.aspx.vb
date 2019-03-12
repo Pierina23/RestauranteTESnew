@@ -116,7 +116,7 @@ Partial Class _Default
 
         tx_subtotal.Text = CStr(tot)
         tx_iva.Text = CStr(tot * 0.12)
-        tx_total.Text = CStr(tot * 1.1200000000000001)
+        tx_total.Text = CStr(tot * 1.12)
 
         cbo_PlaBeb.SelectedIndex = 0
         tx_Precio.Text = ""
@@ -153,9 +153,9 @@ Partial Class _Default
                 sdab.Fill(dtbinsb)
                 If dtbinsb.Rows.Count > 0 Then
                     Dim valor As Integer = Convert.ToInt32(dtbinsb.Rows(0)(3).ToString())
-                    Me.Rating1.CurrentRating = valor
+                    ctrRating.CurrentRating = valor
                 Else
-                    Me.Rating1.CurrentRating = 0
+                    ctrRating.CurrentRating = 0
                 End If
 
             Catch ex As Exception
@@ -290,7 +290,7 @@ Partial Class _Default
                 sdab.Fill(dtbinsb)
                 If dtbinsb.Rows.Count > 0 Then
                     intNumFilIns = 0
-                    strSQL = "UPDATE tbm_rating set Rating = " & Me.Rating1.CurrentRating & " where Id_Plato = " & cbo_PlaBeb.SelectedValue & " and Id_Usuario = " & Usuario
+                    strSQL = "UPDATE tbm_rating set Rating = " & ctrRating.CurrentRating & " where Id_Plato = " & cbo_PlaBeb.SelectedValue & " and Id_Usuario = " & Usuario
                     'sda.UpdateCommand = New SqlCommand(strSQL, con)
                     Dim actualizar As New SqlCommand(strSQL, con)
                     ' intNumFilIns = sda.UpdateCommand.ExecuteNonQuery()
@@ -302,7 +302,7 @@ Partial Class _Default
                     End If
                 Else
                     intNumFilIns = 0
-                    strSQL = "INSERT INTO tbm_rating (Id_Plato, Id_Usuario, Rating) VALUES (" & cbo_PlaBeb.SelectedValue & "," & Usuario & "," & Me.Rating1.CurrentRating & ")"
+                    strSQL = "INSERT INTO tbm_rating (Id_Plato, Id_Usuario, Rating) VALUES (" & cbo_PlaBeb.SelectedValue & "," & Usuario & "," & ctrRating.CurrentRating & ")"
                     'sda.InsertCommand = New SqlCommand(strSQL, con)
                     Dim actualizar1 As New SqlCommand(strSQL, con)
                     'count = actualizar.ExecuteNonQuery()

@@ -218,7 +218,7 @@ height: 16px;
                             <div>
                                 <asp:ScriptManager ID="ToolkitScriptManager1" runat="server">
                                 </asp:ScriptManager>
-                                <asp:Rating ID="Rating1" runat="server" AutoPostBack="true" StarCssClass="blankstar" 
+                                <asp:Rating ID="ctrRating" runat="server" AutoPostBack="true" StarCssClass="blankstar" 
                                 WaitingStarCssClass="waitingstar" FilledStarCssClass="shiningstar" 
                                 EmptyStarCssClass="blankstar" OnChanged="Rating1_Changed" OnClick="Rating1_Changed">
                                 </asp:Rating>
