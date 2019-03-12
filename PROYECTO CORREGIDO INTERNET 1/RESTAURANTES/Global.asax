@@ -29,7 +29,8 @@
         'Original v
         'Session("sessStrCon") = "Data Source=JUANERAZO;Initial Catalog=Restaurantes;Integrated Security=True"
         'Session("sessStrCon") = "Data Source=USER\SQLEXPRESS;Initial Catalog=RESTAURANTES;Integrated Security=True;"
-        Session("sessStrCon") = "Data Source=KEVINPINCAY\SQLSERVER;Initial Catalog=Restaurantes;User ID=sa;Password=P@ssw0rd;Integrated Security=True;"
+        'Session("sessStrCon") = "Data Source=KEVINPINCAY\SQLSERVER;Initial Catalog=Restaurantes;User ID=sa;Password=P@ssw0rd;Integrated Security=True;"
+        Session("sessStrCon") = "Data Source=localhost;Initial Catalog=Restaurantes;User ID=sa;Password=sa;Integrated Security=True;"
         'Session("sessStrCon") = "Data Source=LAPTOP-BG46TJP5\SQLEXPRESS;Initial Catalog=Restaurantes;Integrated Security=True"
         Session("sesUsrIniSes") = ""
         Session("tipoEmpleado") = ""

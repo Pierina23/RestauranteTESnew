@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="Platos_Solicitados.aspx.vb" Inherits="Contactenos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    
     <style type="text/css">
         .auto-style1 {width: 86%;}
         .auto-style8 {left: 0px;top: 0px;width: 97%;}
@@ -101,7 +102,14 @@
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
+    <script type='text/javascript'>
+
+   function openPopUp(url){
+    var opciones="left=500,top=100,width=450px,height=450px";
+
+    window.open(url,"Agregar Plato",opciones);
+   }
+</script> 
     <div class="row-bot">
         <div class="row-bot-bg">
             <div class="main">
@@ -191,8 +199,8 @@
                             <%-- ConfirmButtonExtender Luis Delgado/Jaritza Orrala --%>
                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                             </asp:ScriptManager>
-                            <asp:Button ID="Button1" runat="server" Text="PUBLICAR PLATOS" CssClass="auto-style22" />
-                            <ajaxToolkit:ConfirmButtonExtender ID="Button1_ConfirmButtonExtender" runat="server" ConfirmText="¿Esta seguro de publicar los platos registrados?" OnClientCancel="Operación cancelada" TargetControlID="Button1" />
+                            <asp:Button  ID="Button1" runat="server" Text="PUBLICAR PLATOS" CssClass="auto-style22" />
+                            <%--<ajaxToolkit:ConfirmButtonExtender ID="Button1_ConfirmButtonExtender" runat="server" ConfirmText="¿Esta seguro de publicar los platos registrados?" OnClientCancel="Operación cancelada" TargetControlID="Button1" />--%>
                         </td>
                         <td class="auto-style11">
                             &nbsp;</td>
