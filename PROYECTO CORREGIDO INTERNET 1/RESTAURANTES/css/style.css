@@ -216,3 +216,15 @@ footer {width:100%; padding:23px 0 30px; color:#fff;}
 
 .list-services {padding:0;}
 	.list-services li {float:left; padding:0 0 0 10px;}
+
+    nav ul li a{
+            color:#999;
+            display: inline-block;
+            padding:20px;
+            text-decoration:none;
+            /*Transiciones*/
+            -webkit-transition: 0.4s linear all;
+            -moz-transition: 0.4s linear all;
+            -o-transition: 0.4s linear all;
+            transition: 0.4s linear all;
+}
